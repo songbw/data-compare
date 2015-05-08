@@ -1,0 +1,2 @@
+(ns spanner.utils.error
+)

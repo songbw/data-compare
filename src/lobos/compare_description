@@ -1,0 +1,20 @@
+ (decimal :cid 64 0 :primary-key)    比较ID
+ (varchar :serial_no 255)            序号
+ (varchar :record_no 255)            记录编号
+ (varchar :car_no 255)               车牌号码
+ (varchar :mark_type 255)            类型编号
+ (varchar :name 255)                 车主姓名
+ (varchar :address 255)              联系地址
+ (timestamp :illegal_time)           违法时间
+ (varchar :illegal_address 255)      违法地址
+ (varchar :illegal_code 255)         违法代码
+ (integer :fines (default 0))        罚款金额
+ (varchar :capture_no 255)           抓拍编号
+ (timestamp :record_time)            记录时间
+ (integer :travel_speed (default 0)) 行驶速度
+ (integer :speed_limit (default 0))  路段限速
+ (float :ultra_rate (default 0.0))   超速比例
+ (varchar :phone 255)                联系电话
+ (varchar :car_type 255)             车辆类型
+ (varchar :car_brand 255)            车辆品牌
+ (varchar :violation 255)            违法行为

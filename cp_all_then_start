@@ -1,0 +1,54 @@
+#!/usr/bin/expect
+
+set user root
+set passwd rootroot
+set server 192.168.2.142
+set caruser root
+set carpasswd p@ssadmin2012
+set carserver 172.16.3.150
+set port 22
+set sf_dir  ~/Project/wlmq-autogreen/target/car/
+set tf /tmp
+set carsf_dir ~/cars/
+
+
+# 登录并执行命令
+spawn sh -c " scp -r $sf_dir $user@$server:$tf"
+expect "password:"
+send "${passwd}\n"
+set timeout 30000
+expect "$ "
+
+spawn ssh $user@$server -p $port
+expect "password:"
+send "${passwd}\n"
+expect "]# "
+send "cd car\n"
+expect "]# "
+send "rm -rf ~/car/*\n"
+expect "]# "
+send "mv $tf/car/* .\n"
+expect "]# "
+
+spawn sh -c " scp -r $carsf_dir $caruser@carserver:$tf"
+set timeout 700000
+expect "password:"
+send "${carpasswd}"
+set timeout 70000
+expect "# "
+
+spawn ssh $caruser@$carserver -p $post
+expect "password:"
+send "${carpasswd}\n"
+expect "]# "
+send "cd car\n"
+expect "]# "
+send "rm -rf ~/car/*\n"
+expect "]# "
+send "mv $tf/car/* .\n"
+expect "]# "
+
+#send "./shell stop\n"
+expect "]$ "
+#send "./shell start\n"
+expect "]$ "
